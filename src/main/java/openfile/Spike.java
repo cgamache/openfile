@@ -12,14 +12,15 @@ public class Spike {
 	public static void main(String[] args) {
 
 		if (args.length != 1) {
-			System.out.println("USAGE: $ java -jar openfile.jar openfile.Spike /path/to/phantomjs");
+			System.out.println("\nUSAGE: $ java -jar openfile.jar /path/to/phantomjs\n");
 			System.exit(1);
 		}
 		
 		DesiredCapabilities caps = new DesiredCapabilities();
 		caps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, args[0]);
 		
-		System.out.println("To examine,\n$ lsof -p " + getPID() + " | grep CLOSE_WAIT | wc -l");
+		System.out.println("\n\nTo examine,\n$ lsof -p " + getPID() + " | grep CLOSE_WAIT | wc -l\n\n\n\n");
+		
 		int i = 0;
 		for (; i < REPS; i++) {
 			WebDriver driver = new PhantomJSDriver(caps);
@@ -27,7 +28,7 @@ public class Spike {
 			driver.quit();
 		}
 
-		System.out.println("Sleeping for 30 seconds so you can examine file handles... you should see " + REPS);
+		System.out.println("\n\nSleeping for 30 seconds so you can examine file handles... you should see " + REPS + "\n\n");
 		
 		try {
 			Thread.sleep(30000);
